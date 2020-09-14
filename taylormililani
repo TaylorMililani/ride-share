@@ -1,0 +1,142 @@
+rides = [
+  [
+    {driver_id: "DR0001",
+    date: "2/3/16",
+    cost: 10,
+    rider_id: "RD0003",
+    rating: 3}, 
+    {driver_id: "DR0001",
+    date: "2/5/16",
+    cost: 45,
+    rider_id: "RD0003",
+    rating: 2},
+    {driver_id: "DR0001",
+    date: "2/3/16",
+    cost: 30,
+    rider_id: "RD0015",
+    rating: 4}  
+  ],
+  [
+    {driver_id: "DR0002",
+    date: "2/3/16",
+    cost: 25,
+    rider_id: "RD0073",
+    rating: 5},
+    {driver_id: "DR0002",
+    date: "2/4/16",
+    cost: 15,
+    rider_id: "RD0013",
+    rating: 1},
+    {driver_id: "DR0002",
+    date: "2/5/16",
+    cost: 35,
+    rider_id: "RD0066",
+    rating: 3} 
+  ],
+  [
+    {driver_id: "DR0003",
+    date: "2/4/16",
+    cost: 5,
+    rider_id: "RD0066",
+    rating: 5},
+    {driver_id: "DR0003",
+    date: "2/5/16",
+    cost: 50,
+    rider_id: "RD0003",
+    rating: 2}
+  ],   
+  [
+    {driver_id: "DR0004",
+    date: "2/5/16",
+    cost: 20,
+    rider_id: "RD0073",
+    rating: 5},
+    {driver_id: "DR0004",
+    date: "2/3/16",
+    cost: 5,
+    rider_id: "RD0022",
+    rating: 5},
+    {driver_id: "DR0004",
+    date: "2/4/16",
+    cost: 10,
+    rider_id: "RD0022",
+    rating: 4}
+  ]
+]
+
+def how_many_rides(array)
+  i = 0
+  4.times do
+    puts "Driver DR000#{i + 1} gave #{array[i].length} rides\n\n"
+  i += 1
+  end
+end
+
+how_many_rides(rides)
+
+def how_much_money(array)  
+  i = 0
+  4.times do
+    if array[i].length == 3
+      puts "Driver DR000#{i +1} made $#{array[i][0][:cost] + array[i][1][:cost] + array[i][2][:cost]}\n\n"
+    else
+      puts "Driver DR000#{i + 1} made $#{array[i][0][:cost] + array[i][1][:cost]}\n\n"
+    end 
+    i += 1   
+  end
+end
+
+how_much_money(rides)
+
+def avg_rating(array)
+  i = 0
+  4.times do
+    if array[i].length == 3
+     x = (array[i][0][:rating] + array[i][1][:rating] + array[i][2][:rating]) / 3.0
+     
+     puts "Driver DR000#{i + 1}'s average rating was #{x.round(2)}"
+    else
+      x = (array[i][0][:rating] + array[i][1][:rating]) / 2.0
+      puts "Driver DR000 #{i + 1}'s average rating was #{x.round(2)}"
+    end  
+    i += 1
+  end
+end
+
+avg_rating(rides)
+
+def max_money(array)  
+  money = []
+  i = 0
+  4.times do
+    if array[i].length == 3
+      x = array[i][0][:cost] + array[i][1][:cost] + array[i][2][:cost]
+      money << x
+    else
+      x = array[i][0][:cost] + array[i][1][:cost]
+      money << x
+    end 
+    i += 1 
+  end
+  puts "Driver DR000#{money.index(money.max) +1} made the most money with a total of $#{money.max}\n\n"
+end
+
+max_money(rides)
+
+def max_rating(array)
+  ratings = []
+  i = 0
+  4.times do
+    if array[i].length == 3
+      x = (array[i][0][:rating] + array[i][1][:rating] + array[i][2][:rating]) / 3.0
+      ratings << x
+    else
+      x = (array[i][0][:rating] + array[i][1][:rating]) / 2.0 
+      ratings << x
+    end 
+    i += 1
+  end  
+  puts "Driver DR000#{ratings.index(ratings.max) +1} had the highest average rating with #{ratings.max}"
+end
+
+max_rating(rides)
